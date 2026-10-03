@@ -3,6 +3,7 @@ import pickle
 import requests
 import pandas as pd
 from urllib.parse import quote
+import time
 
 
 # ============================================================
@@ -24,43 +25,15 @@ st.markdown(
     """
     <style>
 
-    /* -----------------------------
-       Main Background
-    ----------------------------- */
-
     .stApp {
-        background: linear-gradient(
-            135deg,
-            #0f0f0f 0%,
-            #141414 50%,
-            #080808 100%
-        );
+        background-color: #101010;
         color: white;
     }
 
-
-    /* -----------------------------
-       Main Content
-    ----------------------------- */
-
     .block-container {
-        padding-top: 2rem;
+        padding-top: 1rem;
         padding-bottom: 3rem;
     }
-
-
-    /* -----------------------------
-       Select Box
-    ----------------------------- */
-
-    div[data-baseweb="select"] {
-        border-radius: 10px;
-    }
-
-
-    /* -----------------------------
-       Recommend Button
-    ----------------------------- */
 
     .stButton > button {
         background-color: #e50914;
@@ -70,19 +43,12 @@ st.markdown(
         padding: 0.65rem 1.5rem;
         font-size: 16px;
         font-weight: 600;
-        transition: 0.3s;
     }
 
     .stButton > button:hover {
         background-color: #b20710;
         color: white;
-        transform: scale(1.03);
     }
-
-
-    /* -----------------------------
-       Movie Card
-    ----------------------------- */
 
     .movie-title {
         text-align: center;
@@ -93,29 +59,6 @@ st.markdown(
         margin-bottom: 10px;
         min-height: 45px;
     }
-
-
-    /* -----------------------------
-       Trailer Button
-    ----------------------------- */
-
-    div.stLinkButton > a {
-        background-color: #e50914;
-        color: white !important;
-        border-radius: 8px;
-        font-weight: 600;
-        text-align: center;
-        border: none;
-    }
-
-    div.stLinkButton > a:hover {
-        background-color: #b20710;
-    }
-
-
-    /* -----------------------------
-       Footer
-    ----------------------------- */
 
     .footer {
         text-align: center;
@@ -137,12 +80,17 @@ st.markdown(
 # ============================================================
 
 try:
+
     api_key = st.secrets["TMDB_API_KEY"]
+
 except Exception:
+
     st.error(
-        "TMDB API key not found. Please add TMDB_API_KEY "
-        "inside .streamlit/secrets.toml"
+        "TMDB API key not found. "
+        "Please add TMDB_API_KEY inside "
+        ".streamlit/secrets.toml"
     )
+
     st.stop()
 
 
@@ -152,29 +100,36 @@ except Exception:
 
 try:
 
-    movies = pickle.load(
-        open("movie_dict.pkl", "rb")
-    )
+    with open("movie_dict.pkl", "rb") as file:
+        movies = pickle.load(file)
 
-    similarity = pickle.load(
-        open("similarity.pkl", "rb")
-    )
+    with open("similarity.pkl", "rb") as file:
+        similarity = pickle.load(file)
 
 except FileNotFoundError:
 
     st.error(
-        "movie_dict.pkl or similarity.pkl was not found. "
-        "Make sure these files are inside the same folder as app.py."
+        "movie_dict.pkl or similarity.pkl was not found."
     )
 
     st.stop()
 
 
 # ============================================================
-# CREATE MOVIE DATAFRAME
+# DATAFRAME
 # ============================================================
 
 movies = pd.DataFrame(movies)
+
+
+if "title" not in movies.columns:
+
+    st.error(
+        "The movie data does not contain a 'title' column."
+    )
+
+    st.stop()
+
 
 movie_list = movies["title"].values
 
@@ -183,214 +138,379 @@ movie_list = movies["title"].values
 # TMDB REQUEST FUNCTION
 # ============================================================
 
-@st.cache_data(show_spinner=False)
-def tmdb_request(endpoint, params=None):
+def tmdb_request(endpoint, params=None, retries=3):
 
-    url = f"https://api.themoviedb.org/3/{endpoint}"
+    url = "https://api.themoviedb.org/3/" + endpoint
 
     if params is None:
         params = {}
 
+    params = dict(params)
+
     params["api_key"] = api_key
 
-    try:
+    for attempt in range(retries):
 
-        response = requests.get(
-            url,
-            params=params,
-            timeout=10,
-            headers={
-                "User-Agent": "Movie-Recommender-App"
-            }
-        )
+        try:
 
-        if response.status_code == 200:
-            return response.json()
+            response = requests.get(
+                url,
+                params=params,
+                timeout=20,
+                headers={
+                    "User-Agent": "Mozilla/5.0"
+                }
+            )
 
-    except requests.exceptions.RequestException:
-        pass
+            # Successful request
+            if response.status_code == 200:
+
+                return response.json()
+
+
+            # Rate limit
+            if response.status_code == 429:
+
+                time.sleep(1.5)
+
+                continue
+
+
+            # Temporary server error
+            if response.status_code >= 500:
+
+                time.sleep(1)
+
+                continue
+
+
+        except requests.exceptions.RequestException:
+
+            if attempt < retries - 1:
+
+                time.sleep(1)
+
+                continue
+
 
     return None
 
 
 # ============================================================
-# NORMALIZE MOVIE TITLE
+# NORMALIZE TITLE
 # ============================================================
 
 def normalize_title(title):
 
-    if not title:
+    if title is None:
+
         return ""
 
-    return (
-        title.lower()
-        .replace(":", "")
-        .replace("-", "")
-        .replace(",", "")
-        .replace(".", "")
-        .strip()
+    title = str(title).lower().strip()
+
+    characters = [
+        ":",
+        "-",
+        ",",
+        ".",
+        "'",
+        '"',
+        "!",
+        "?",
+        "(",
+        ")"
+    ]
+
+    for char in characters:
+
+        title = title.replace(
+            char,
+            ""
+        )
+
+    return " ".join(
+        title.split()
     )
+
+
+# ============================================================
+# CLEAN MOVIE ID
+# ============================================================
+
+def clean_movie_id(movie_id):
+
+    if movie_id is None:
+
+        return None
+
+    try:
+
+        if pd.isna(movie_id):
+
+            return None
+
+    except Exception:
+
+        pass
+
+    try:
+
+        return int(float(movie_id))
+
+    except Exception:
+
+        return None
 
 
 # ============================================================
 # FIND MOVIE ON TMDB
 # ============================================================
 
-@st.cache_data(show_spinner=False)
-def find_tmdb_movie(movie_id, movie_title):
+def find_tmdb_movie(movie_title, movie_id=None):
 
-    # --------------------------------------------------------
-    # First try TMDB ID
-    # --------------------------------------------------------
+    movie_title = str(movie_title).strip()
 
-    if movie_id:
+    # ========================================================
+    # TITLE SEARCH
+    # ========================================================
 
-        data = tmdb_request(
-            f"movie/{movie_id}"
-        )
+    search_queries = []
 
-        if data and data.get("id"):
+    # Original title
+    search_queries.append(movie_title)
 
-            return data
+    # Normalized title
+    normalized = normalize_title(movie_title)
+
+    if normalized != movie_title.lower():
+
+        search_queries.append(normalized)
+
+    # Remove text after colon
+    if ":" in movie_title:
+
+        before_colon = movie_title.split(":")[0].strip()
+
+        if before_colon:
+
+            search_queries.append(before_colon)
+
+    # Remove text after hyphen
+    if "-" in movie_title:
+
+        before_hyphen = movie_title.split("-")[0].strip()
+
+        if before_hyphen:
+
+            search_queries.append(before_hyphen)
 
 
-    # --------------------------------------------------------
-    # If ID does not work, search by title
-    # --------------------------------------------------------
-
-    search_data = tmdb_request(
-        "search/movie",
-        {
-            "query": movie_title,
-            "language": "en-US",
-            "page": 1,
-            "include_adult": False
-        }
+    # Remove duplicates
+    search_queries = list(
+        dict.fromkeys(search_queries)
     )
 
-    if not search_data:
-        return None
 
-    results = search_data.get("results", [])
+    # ========================================================
+    # SEARCH USING TITLE
+    # ========================================================
 
-    if not results:
-        return None
+    for query in search_queries:
 
-
-    # --------------------------------------------------------
-    # Try exact normalized title
-    # --------------------------------------------------------
-
-    target_title = normalize_title(movie_title)
-
-    for movie in results:
-
-        tmdb_title = normalize_title(
-            movie.get("title", "")
+        search_data = tmdb_request(
+            "search/movie",
+            {
+                "query": query,
+                "language": "en-US",
+                "page": 1,
+                "include_adult": False
+            }
         )
 
-        if tmdb_title == target_title:
 
-            return movie
+        if not search_data:
 
+            continue
 
-    # --------------------------------------------------------
-    # Otherwise use first result
-    # --------------------------------------------------------
-
-    return results[0]
-
-
-# ============================================================
-# FETCH POSTER
-# ============================================================
-
-@st.cache_data(show_spinner=False)
-def fetch_poster(movie_id, movie_title):
-
-    movie_data = find_tmdb_movie(
-        movie_id,
-        movie_title
-    )
-
-    if movie_data:
-
-        poster_path = movie_data.get(
-            "poster_path"
-        )
-
-        if poster_path:
-
-            return (
-                "https://image.tmdb.org/t/p/w500"
-                + poster_path
-            )
-
-
-    # --------------------------------------------------------
-    # Extra fallback search
-    # --------------------------------------------------------
-
-    search_data = tmdb_request(
-        "search/movie",
-        {
-            "query": movie_title,
-            "language": "en-US",
-            "page": 1
-        }
-    )
-
-    if search_data:
 
         results = search_data.get(
             "results",
             []
         )
 
-        if results:
 
-            poster_path = results[0].get(
-                "poster_path"
+        if not results:
+
+            continue
+
+
+        wanted_title = normalize_title(
+            movie_title
+        )
+
+
+        # ----------------------------------------------------
+        # FIRST PRIORITY:
+        # Exact title + poster
+        # ----------------------------------------------------
+
+        for result in results:
+
+            result_title = normalize_title(
+                result.get(
+                    "title",
+                    ""
+                )
             )
 
-            if poster_path:
 
-                return (
-                    "https://image.tmdb.org/t/p/w500"
-                    + poster_path
+            if (
+                result_title == wanted_title
+                and result.get("poster_path")
+            ):
+
+                return result
+
+
+        # ----------------------------------------------------
+        # SECOND PRIORITY:
+        # Similar title + poster
+        # ----------------------------------------------------
+
+        for result in results:
+
+            result_title = normalize_title(
+                result.get(
+                    "title",
+                    ""
                 )
+            )
 
 
-    # --------------------------------------------------------
-    # Placeholder if no poster exists
-    # --------------------------------------------------------
+            if (
+                result.get("poster_path")
+                and
+                (
+                    wanted_title in result_title
+                    or
+                    result_title in wanted_title
+                )
+            ):
 
-    return (
-        "https://via.placeholder.com/500x750"
-        "?text=No+Poster"
+                return result
+
+
+        # ----------------------------------------------------
+        # THIRD PRIORITY:
+        # Any result having poster
+        # ----------------------------------------------------
+
+        for result in results:
+
+            if result.get("poster_path"):
+
+                return result
+
+
+    # ========================================================
+    # MOVIE ID FALLBACK
+    # ========================================================
+
+    movie_id = clean_movie_id(
+        movie_id
     )
 
 
+    if movie_id is not None:
+
+        movie_data = tmdb_request(
+            f"movie/{movie_id}",
+            {
+                "language": "en-US"
+            }
+        )
+
+
+        if movie_data:
+
+            if movie_data.get(
+                "poster_path"
+            ):
+
+                return movie_data
+
+
+    return None
+
+
 # ============================================================
-# FIND YOUTUBE VIDEO
+# FETCH POSTER
+#
+# IMPORTANT:
+# We return the TMDB URL directly.
+# ============================================================
+
+def fetch_poster(movie_id, movie_title):
+
+    movie = find_tmdb_movie(
+        movie_title,
+        movie_id
+    )
+
+
+    if movie is None:
+
+        return None
+
+
+    poster_path = movie.get(
+        "poster_path"
+    )
+
+
+    if not poster_path:
+
+        return None
+
+
+    # --------------------------------------------------------
+    # DIRECT TMDB IMAGE URL
+    # --------------------------------------------------------
+
+    poster_url = (
+        "https://image.tmdb.org/t/p/w500"
+        + poster_path
+    )
+
+
+    return poster_url
+
+
+# ============================================================
+# GET YOUTUBE TRAILER
 # ============================================================
 
 def get_youtube_video(videos):
 
     if not videos:
+
         return None
 
 
-    # --------------------------------------------------------
-    # First priority: Official Trailer
-    # --------------------------------------------------------
+    # ========================================================
+    # OFFICIAL TRAILER
+    # ========================================================
 
     for video in videos:
 
         if (
             video.get("site") == "YouTube"
-            and video.get("type") == "Trailer"
-            and video.get("official") is True
+            and
+            video.get("type") == "Trailer"
+            and
+            video.get("official") is True
+            and
+            video.get("key")
         ):
 
             return (
@@ -399,15 +519,18 @@ def get_youtube_video(videos):
             )
 
 
-    # --------------------------------------------------------
-    # Second priority: Any Trailer
-    # --------------------------------------------------------
+    # ========================================================
+    # ANY TRAILER
+    # ========================================================
 
     for video in videos:
 
         if (
             video.get("site") == "YouTube"
-            and video.get("type") == "Trailer"
+            and
+            video.get("type") == "Trailer"
+            and
+            video.get("key")
         ):
 
             return (
@@ -416,15 +539,18 @@ def get_youtube_video(videos):
             )
 
 
-    # --------------------------------------------------------
-    # Third priority: Teaser
-    # --------------------------------------------------------
+    # ========================================================
+    # TEASER
+    # ========================================================
 
     for video in videos:
 
         if (
             video.get("site") == "YouTube"
-            and video.get("type") == "Teaser"
+            and
+            video.get("type") == "Teaser"
+            and
+            video.get("key")
         ):
 
             return (
@@ -440,67 +566,83 @@ def get_youtube_video(videos):
 # FETCH TRAILER
 # ============================================================
 
-@st.cache_data(show_spinner=False)
 def fetch_trailer(movie_id, movie_title):
 
-    movie_data = find_tmdb_movie(
-        movie_id,
-        movie_title
+    movie = find_tmdb_movie(
+        movie_title,
+        movie_id
     )
 
 
-    # --------------------------------------------------------
-    # Try TMDB ID
-    # --------------------------------------------------------
+    if movie:
 
-    if movie_data:
+        tmdb_id = movie.get(
+            "id"
+        )
 
-        tmdb_id = movie_data.get("id")
 
         if tmdb_id:
 
-            video_data = tmdb_request(
+            # ------------------------------------------------
+            # Try English videos
+            # ------------------------------------------------
+
+            data = tmdb_request(
                 f"movie/{tmdb_id}/videos",
                 {
                     "language": "en-US"
                 }
             )
 
-            if video_data:
+
+            if data:
 
                 trailer = get_youtube_video(
-                    video_data.get("results", [])
+                    data.get(
+                        "results",
+                        []
+                    )
                 )
 
+
                 if trailer:
+
                     return trailer
 
 
             # ------------------------------------------------
-            # Try without language restriction
+            # Try without language
             # ------------------------------------------------
 
-            video_data = tmdb_request(
+            data = tmdb_request(
                 f"movie/{tmdb_id}/videos"
             )
 
-            if video_data:
+
+            if data:
 
                 trailer = get_youtube_video(
-                    video_data.get("results", [])
+                    data.get(
+                        "results",
+                        []
+                    )
                 )
 
+
                 if trailer:
+
                     return trailer
 
 
-    # --------------------------------------------------------
-    # YouTube search fallback
-    # --------------------------------------------------------
+    # ========================================================
+    # YOUTUBE SEARCH FALLBACK
+    # ========================================================
 
     search_text = quote(
-        movie_title + " official trailer"
+        str(movie_title)
+        + " official trailer"
     )
+
 
     return (
         "https://www.youtube.com/results"
@@ -510,66 +652,89 @@ def fetch_trailer(movie_id, movie_title):
 
 
 # ============================================================
-# RECOMMEND MOVIES
+# RECOMMEND FUNCTION
 # ============================================================
 
 def recommend(movie):
 
-    # --------------------------------------------------------
-    # Find selected movie index
-    # --------------------------------------------------------
-
-    movie_index = movies[
+    matching_movies = movies[
         movies["title"] == movie
-    ].index[0]
+    ]
 
 
-    # --------------------------------------------------------
-    # Get similarity distances
-    # --------------------------------------------------------
+    if matching_movies.empty:
 
-    distances = similarity[movie_index]
+        return [], [], []
 
 
-    # --------------------------------------------------------
-    # Sort by similarity
-    # --------------------------------------------------------
+    movie_index = matching_movies.index[0]
+
+
+    distances = similarity[
+        movie_index
+    ]
+
+
+    # ========================================================
+    # TOP 5 SIMILAR MOVIES
+    # ========================================================
 
     movies_list = sorted(
-        list(enumerate(distances)),
+        list(
+            enumerate(distances)
+        ),
         reverse=True,
         key=lambda x: x[1]
     )[1:6]
 
 
     names = []
+
     posters = []
+
     trailers = []
 
 
-    # --------------------------------------------------------
-    # Get information for top 5 movies
-    # --------------------------------------------------------
+    # ========================================================
+    # GET EACH RECOMMENDATION
+    # ========================================================
 
-    for i in movies_list:
+    for item in movies_list:
 
-        index = i[0]
-
-        movie_title = movies.iloc[index].title
+        index = item[0]
 
 
         # ----------------------------------------------------
-        # Get TMDB ID
+        # MOVIE TITLE
         # ----------------------------------------------------
 
-        movie_id = movies.iloc[index].get(
-            "movie_id",
-            None
+        movie_title = str(
+            movies.iloc[index]["title"]
         )
 
 
         # ----------------------------------------------------
-        # Poster
+        # MOVIE ID
+        # ----------------------------------------------------
+
+        movie_id = None
+
+
+        if "movie_id" in movies.columns:
+
+            movie_id = movies.iloc[index].get(
+                "movie_id",
+                None
+            )
+
+
+        movie_id = clean_movie_id(
+            movie_id
+        )
+
+
+        # ----------------------------------------------------
+        # POSTER
         # ----------------------------------------------------
 
         poster = fetch_poster(
@@ -579,7 +744,7 @@ def recommend(movie):
 
 
         # ----------------------------------------------------
-        # Trailer
+        # TRAILER
         # ----------------------------------------------------
 
         trailer = fetch_trailer(
@@ -588,31 +753,43 @@ def recommend(movie):
         )
 
 
-        names.append(movie_title)
-
-        posters.append(poster)
-
-        trailers.append(trailer)
+        names.append(
+            movie_title
+        )
 
 
-    return names, posters, trailers
+        posters.append(
+            poster
+        )
+
+
+        trailers.append(
+            trailer
+        )
+
+
+    return (
+        names,
+        posters,
+        trailers
+    )
 
 
 # ============================================================
-# HEADER
+# MAIN HEADING
 # ============================================================
 
 st.markdown(
     """
     <h1 style="
-        text-align: center;
-        font-size: 48px;
-        font-weight: 800;
-        margin-top: 10px;
-        margin-bottom: 5px;
+        text-align:center;
+        font-size:48px;
+        font-weight:800;
+        margin-top:10px;
+        margin-bottom:5px;
+        color:white;
     ">
-        <span style="color:#e50914;">🎬 Movie</span>
-        <span style="color:white;"> Recommender</span>
+        🎬 Movie Recommender
     </h1>
     """,
     unsafe_allow_html=True
@@ -620,23 +797,19 @@ st.markdown(
 
 
 # ============================================================
-# SUBHEADER
+# COLORFUL SUBHEADING
 # ============================================================
 
 st.markdown(
     """
     <div style="
-        text-align: center;
-        font-size: 22px;
-        font-weight: 600;
-        margin-top: 5px;
-        margin-bottom: 45px;
+        text-align:center;
+        font-size:22px;
+        font-weight:600;
+        margin-top:5px;
+        margin-bottom:45px;
     ">
-        <span style="color:#ff4d6d;">Discover</span>
-        <span style="color:#ffd166;"> movies</span>
-        <span style="color:#06d6a0;"> you'll love</span>
-        <span style="color:#4dabf7;"> based on your taste</span>
-        <span style="color:#c77dff;"> 🍿✨</span>
+        <span style="color:#ff4d6d;">Discover</span><span style="color:#ffd166;"> movies</span><span style="color:#06d6a0;"> you'll love</span><span style="color:#4dabf7;"> based on your taste</span><span style="color:#c77dff;"> 🍿✨</span>
     </div>
     """,
     unsafe_allow_html=True
@@ -653,6 +826,7 @@ st.markdown(
         text-align:center;
         font-size:32px;
         margin-bottom:20px;
+        color:white;
     ">
         🍿 Choose a Movie
     </h2>
@@ -673,8 +847,7 @@ selected_movie_name = st.selectbox(
 # ============================================================
 
 if st.button(
-    "🎯 Recommend Movies",
-    use_container_width=False
+    "🎯 Recommend Movies"
 ):
 
     with st.spinner(
@@ -687,7 +860,7 @@ if st.button(
 
 
     # ========================================================
-    # RECOMMENDED MOVIES HEADING
+    # RECOMMENDED HEADING
     # ========================================================
 
     st.markdown(
@@ -697,6 +870,7 @@ if st.button(
             font-size:32px;
             margin-top:50px;
             margin-bottom:30px;
+            color:white;
         ">
             ✨ Recommended For You
         </h2>
@@ -706,29 +880,55 @@ if st.button(
 
 
     # ========================================================
-    # FIVE MOVIE COLUMNS
+    # FIVE COLUMNS
     # ========================================================
 
     cols = st.columns(5)
 
 
-    for i in range(5):
+    for i in range(
+        len(names)
+    ):
 
         with cols[i]:
 
-            # ------------------------------------------------
-            # Poster
-            # ------------------------------------------------
+            # =================================================
+            # POSTER
+            # =================================================
 
-            st.image(
-                posters[i],
-                use_container_width=True
-            )
+            if posters[i]:
+
+                st.image(
+                    posters[i],
+                    use_container_width=True
+                )
+
+            else:
+
+                st.markdown(
+                    """
+                    <div style="
+                        height:490px;
+                        background:#171717;
+                        border-radius:10px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        text-align:center;
+                        color:#888;
+                        font-size:16px;
+                    ">
+                        🎬<br>
+                        Poster unavailable
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
 
 
-            # ------------------------------------------------
-            # Movie Name
-            # ------------------------------------------------
+            # =================================================
+            # MOVIE NAME
+            # =================================================
 
             st.markdown(
                 f"""
@@ -740,15 +940,17 @@ if st.button(
             )
 
 
-            # ------------------------------------------------
-            # Trailer Button
-            # ------------------------------------------------
+            # =================================================
+            # TRAILER BUTTON
+            # =================================================
 
-            st.link_button(
-                "▶️ Watch Trailer",
-                trailers[i],
-                use_container_width=True
-            )
+            if trailers[i]:
+
+                st.link_button(
+                    "▶️ Watch Trailer",
+                    trailers[i],
+                    use_container_width=True
+                )
 
 
 # ============================================================
