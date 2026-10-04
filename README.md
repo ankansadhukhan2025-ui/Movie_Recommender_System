@@ -214,129 +214,129 @@ The recommendation pipeline is:
 
 ```text
 
-&#x20;                   TMDB Movies Dataset
+                    TMDB Movies Dataset
 
-&#x20;                          +
+                           +
 
-&#x20;                   TMDB Credits Dataset
+                    TMDB Credits Dataset
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                      Merge Data
+                       Merge Data
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                  Select Required Columns
+                   Select Required Columns
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                   Handle Missing Values
+                    Handle Missing Values
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                   Parse JSON-like Data
+                    Parse JSON-like Data
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;             ┌───────────────────────────┐
+              ┌───────────────────────────┐
 
-&#x20;             │       Feature Extraction  │
+              │       Feature Extraction  │
 
-&#x20;             │                           │
+              │                           │
 
-&#x20;             │ • Overview                │
+              │ • Overview                │
 
-&#x20;             │ • Genres                  │
+              │ • Genres                  │
 
-&#x20;             │ • Keywords                │
+              │ • Keywords                │
 
-&#x20;             │ • Top 3 Cast Members      │
+              │ • Top 3 Cast Members      │
 
-&#x20;             │ • Director                │
+              │ • Director                │
 
-&#x20;             └───────────────────────────┘
+              └───────────────────────────┘
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                    Create "tags"
+                     Create "tags"
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                   Text Cleaning
+                    Text Cleaning
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                   Lowercase Text
+                    Lowercase Text
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                   Porter Stemming
+                    Porter Stemming
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                 CountVectorizer
+                  CountVectorizer
 
-&#x20;                 max_features=5000
+                  max_features=5000
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                   Movie Vectors
+                    Movie Vectors
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                 Cosine Similarity
+                  Cosine Similarity
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;               Similarity Matrix
+                Similarity Matrix
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                Find Top 5 Movies
+                 Find Top 5 Movies
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                   Streamlit App
+                    Streamlit App
 
-&#x20;                          │
+                           │
 
-&#x20;                          ▼
+                           ▼
 
-&#x20;                     TMDB API
+                      TMDB API
 
-&#x20;                   /           \\
+                    /           \\
 
-&#x20;              Posters        Trailers
+               Posters        Trailers
 
 ```
 
@@ -702,9 +702,9 @@ Conceptually:
 
 movies = movies.merge(
 
-&#x20;   credits,
+    credits,
 
-&#x20;   on="title"
+    on="title"
 
 )
 
@@ -808,21 +808,21 @@ For example:
 
 [
 
-&#x20;   {
+    {
 
-&#x20;       "id": 28,
+        "id": 28,
 
-&#x20;       "name": "Action"
+        "name": "Action"
 
-&#x20;   },
+    },
 
-&#x20;   {
+    {
 
-&#x20;       "id": 12,
+        "id": 12,
 
-&#x20;       "name": "Adventure"
+        "name": "Adventure"
 
-&#x20;   }
+    }
 
 ]
 
@@ -996,15 +996,15 @@ Conceptually:
 
 tags = (
 
-&#x20;   overview
+    overview
 
-&#x20;   + genres
+    + genres
 
-&#x20;   + keywords
+    + keywords
 
-&#x20;   + cast
+    + cast
 
-&#x20;   + director
+    + director
 
 )
 
@@ -1112,9 +1112,9 @@ The processed text is converted into numerical vectors using:
 
 CountVectorizer(
 
-&#x20;   max_features=5000,
+    max_features=5000,
 
-&#x20;   stop_words="english"
+    stop_words="english"
 
 )
 
@@ -1176,7 +1176,7 @@ Conceptually:
 
 ```text
 
-&#x20;             Movie A    Movie B    Movie C
+              Movie A    Movie B    Movie C
 
 Movie A         1.00       0.82       0.21
 
@@ -1216,7 +1216,7 @@ Find the selected movie's index.
 
 movie_index = movies.index[
 
-&#x20;   movies["title"] == selected_movie
+    movies["title"] == selected_movie
 
 ][0]
 
@@ -1252,11 +1252,11 @@ Sort movies by similarity.
 
 sorted(
 
-&#x20;   list(enumerate(distances)),
+    list(enumerate(distances)),
 
-&#x20;   reverse=True,
+    reverse=True,
 
-&#x20;   key=lambda x: x[1]
+    key=lambda x: x[1]
 
 )
 
@@ -1734,61 +1734,61 @@ The exact recommendations depend on the dataset, preprocessing pipeline, and fea
 
 User
 
-&#x20;│
+ │
 
-&#x20;▼
+ ▼
 
 Select Movie
 
-&#x20;│
+ │
 
-&#x20;▼
+ ▼
 
 Streamlit Application
 
-&#x20;│
+ │
 
-&#x20;▼
+ ▼
 
 Find Movie Index
 
-&#x20;│
+ │
 
-&#x20;▼
+ ▼
 
 Retrieve Similarity Scores
 
-&#x20;│
+ │
 
-&#x20;▼
+ ▼
 
 Sort Similarity Scores
 
-&#x20;│
+ │
 
-&#x20;▼
+ ▼
 
 Select Top 5 Movies
 
-&#x20;│
+ │
 
-&#x20;├───────────────┐
+ ├───────────────┐
 
-&#x20;▼               ▼
+ ▼               ▼
 
 TMDB API       Recommendation
 
-&#x20;│
+ │
 
-&#x20;├── Poster
+ ├── Poster
 
-&#x20;│
+ │
 
-&#x20;└── Trailer
+ └── Trailer
 
-&#x20;│
+ │
 
-&#x20;▼
+ ▼
 
 Display Results
 
@@ -1984,39 +1984,39 @@ Typical deployment steps are:
 
 GitHub Repository
 
-&#x20;      │
+       │
 
-&#x20;      ▼
+       ▼
 
 Connect Repository
 
-&#x20;      │
+       │
 
-&#x20;      ▼
+       ▼
 
 Select app.py
 
-&#x20;      │
+       │
 
-&#x20;      ▼
+       ▼
 
 Configure Python Dependencies
 
-&#x20;      │
+       │
 
-&#x20;      ▼
+       ▼
 
 Add TMDB_API_KEY Secret
 
-&#x20;      │
+       │
 
-&#x20;      ▼
+       ▼
 
 Deploy
 
-&#x20;      │
+       │
 
-&#x20;      ▼
+       ▼
 
 Streamlit Application
 
@@ -2074,11 +2074,11 @@ Combine content-based recommendations with collaborative filtering.
 
 Content-Based
 
-&#x20;     +
+      +
 
 Collaborative Filtering
 
-&#x20;     ↓
+      ↓
 
 Hybrid Recommendation
 
@@ -2102,19 +2102,19 @@ Add user accounts and recommendation history.
 
 User
 
-&#x20;↓
+ ↓
 
 Watch History
 
-&#x20;↓
+ ↓
 
 Favorite Movies
 
-&#x20;↓
+ ↓
 
 Genre Preferences
 
-&#x20;↓
+ ↓
 
 Personalized Recommendations
 
@@ -2266,15 +2266,15 @@ Future implementations could compare:
 
 CountVectorizer
 
-&#x20;      ↓
+       ↓
 
 TF-IDF
 
-&#x20;      ↓
+       ↓
 
 Word Embeddings
 
-&#x20;      ↓
+       ↓
 
 Transformer Embeddings
 
@@ -2774,59 +2774,59 @@ The project combines **Machine Learning + NLP + Recommendation Systems + REST AP
 
 ```text
 
-&#x20;            MOVIE DATA
+             MOVIE DATA
 
-&#x20;                │
+                 │
 
-&#x20;                ▼
+                 ▼
 
-&#x20;         DATA PREPROCESSING
+          DATA PREPROCESSING
 
-&#x20;                │
+                 │
 
-&#x20;                ▼
+                 ▼
 
-&#x20;         FEATURE ENGINEERING
+          FEATURE ENGINEERING
 
-&#x20;                │
+                 │
 
-&#x20;                ▼
+                 ▼
 
-&#x20;              NLP
+               NLP
 
-&#x20;                │
+                 │
 
-&#x20;                ▼
+                 ▼
 
-&#x20;        COUNTVECTORIZER
+         COUNTVECTORIZER
 
-&#x20;                │
+                 │
 
-&#x20;                ▼
+                 ▼
 
-&#x20;      COSINE SIMILARITY
+       COSINE SIMILARITY
 
-&#x20;                │
+                 │
 
-&#x20;                ▼
+                 ▼
 
-&#x20;      MOVIE RECOMMENDATIONS
+       MOVIE RECOMMENDATIONS
 
-&#x20;                │
+                 │
 
-&#x20;                ▼
+                 ▼
 
-&#x20;           STREAMLIT
+            STREAMLIT
 
-&#x20;                │
+                 │
 
-&#x20;                ▼
+                 ▼
 
-&#x20;            TMDB API
+             TMDB API
 
-&#x20;           /        \\
+            /        \\
 
-&#x20;      POSTERS      TRAILERS
+       POSTERS      TRAILERS
 
 ```
 
