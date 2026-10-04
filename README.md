@@ -1,12 +1,12 @@
-\# 🎬 Movie Recommender System
+﻿# 🎬 Movie Recommender System
 
 
 
-A \*\*content-based movie recommendation system\*\* built using \*\*Python, Machine Learning, NLP, Pandas, Scikit-learn, Streamlit, and the TMDB API\*\*.
+A **content-based movie recommendation system** built using **Python, Machine Learning, NLP, Pandas, Scikit-learn, Streamlit, and the TMDB API**.
 
 
 
-The application recommends movies similar to a movie selected by the user. It combines movie metadata such as \*\*overview, genres, keywords, cast, and director\*\* into a single feature representation and uses \*\*CountVectorizer\*\* and \*\*cosine similarity\*\* to generate recommendations.
+The application recommends movies similar to a movie selected by the user. It combines movie metadata such as **overview, genres, keywords, cast, and director** into a single feature representation and uses **CountVectorizer** and **cosine similarity** to generate recommendations.
 
 
 
@@ -14,39 +14,39 @@ The project demonstrates practical implementation of:
 
 
 
-\- Data preprocessing
+- Data preprocessing
 
-\- Feature engineering
+- Feature engineering
 
-\- Natural Language Processing
+- Natural Language Processing
 
-\- Text vectorization
+- Text vectorization
 
-\- Similarity-based recommendation
+- Similarity-based recommendation
 
-\- REST API integration
+- REST API integration
 
-\- Streamlit application development
+- Streamlit application development
 
-\- Model serialization
+- Model serialization
 
-\- Git/GitHub
+- Git/GitHub
 
-\- API secret management
+- API secret management
 
-\- Deployment configuration
-
-
-
-\---
+- Deployment configuration
 
 
 
-\## 🌐 Live Demo
+---
 
 
 
-🚀 \*\*Streamlit App:\*\*  
+## ðŸŒ Live Demo
+
+
+
+ðŸš€ **Streamlit App:**  
 
 Add your deployed Streamlit URL here after deployment.
 
@@ -60,47 +60,47 @@ https://your-app-name.streamlit.app
 
 
 
-\---
+---
 
 
 
-\## 📸 Application Screenshots
+## ðŸ“¸ Application Screenshots
 
 
 
-\### 🏠 Home Page
+### ðŸ  Home Page
 
 
 
-!\[Movie Recommender Home Page](screenshots/home.png)
+![Movie Recommender Home Page](screenshots/home.png)
 
 
 
-\### 🎬 Movie Recommendations
+### 🎬 Movie Recommendations
 
 
 
-!\[Movie Recommendations](screenshots/recommendations.png)
+![Movie Recommendations](screenshots/recommendations.png)
 
 
 
-\---
+---
 
 
 
-\# 📌 Project Overview
+# ðŸ“Œ Project Overview
 
 
 
-The Movie Recommender System is a \*\*content-based recommendation system\*\*.
+The Movie Recommender System is a **content-based recommendation system**.
 
 
 
-Instead of relying on user ratings or collaborative filtering, the system recommends movies based on the \*\*content and metadata of the movies\*\*.
+Instead of relying on user ratings or collaborative filtering, the system recommends movies based on the **content and metadata of the movies**.
 
 
 
-The project uses the \*\*TMDB 5000 Movies and Credits datasets\*\*.
+The project uses the **TMDB 5000 Movies and Credits datasets**.
 
 
 
@@ -108,15 +108,15 @@ For each movie, the following information is extracted:
 
 
 
-\- Movie overview
+- Movie overview
 
-\- Genres
+- Genres
 
-\- Keywords
+- Keywords
 
-\- Top 3 cast members
+- Top 3 cast members
 
-\- Director
+- Director
 
 
 
@@ -128,83 +128,83 @@ The text is then:
 
 
 
-1\. Converted to lowercase
+1. Converted to lowercase
 
-2\. Cleaned
+2. Cleaned
 
-3\. Stemmed using the \*\*Porter Stemmer\*\*
+3. Stemmed using the **Porter Stemmer**
 
-4\. Converted into numerical vectors using \*\*CountVectorizer\*\*
+4. Converted into numerical vectors using **CountVectorizer**
 
-5\. Compared using \*\*cosine similarity\*\*
-
-
-
-When a user selects a movie, the system finds the movies with the highest similarity scores and returns the \*\*top 5 recommendations\*\*.
+5. Compared using **cosine similarity**
 
 
 
-The Streamlit application additionally uses the \*\*TMDB API\*\* to retrieve:
+When a user selects a movie, the system finds the movies with the highest similarity scores and returns the **top 5 recommendations**.
 
 
 
-\- Movie posters
-
-\- Movie information
-
-\- YouTube trailer information
+The Streamlit application additionally uses the **TMDB API** to retrieve:
 
 
 
-\---
+- Movie posters
+
+- Movie information
+
+- YouTube trailer information
 
 
 
-\# ✨ Features
+---
 
 
 
-\- 🎬 Searchable movie selection
-
-\- 🤖 Content-based movie recommendation
-
-\- 🧠 NLP-based text preprocessing
-
-\- 📊 CountVectorizer feature extraction
-
-\- 📐 Cosine similarity
-
-\- 🎭 Genre-based similarity
-
-\- 🎯 Keyword-based similarity
-
-\- 👨‍🎤 Cast-based similarity
-
-\- 🎥 Director-based similarity
-
-\- 🖼️ TMDB movie poster retrieval
-
-\- ▶️ YouTube trailer retrieval through TMDB
-
-\- 🔎 TMDB fallback movie search
-
-\- 🎨 Custom Streamlit interface
-
-\- 🔐 Secure API key management using Streamlit Secrets
-
-\- 💾 Serialized ML artifacts using Pickle
-
-\- ☁️ Streamlit deployment support
-
-\- 📦 Git LFS support for large model files
+# âœ¨ Features
 
 
 
-\---
+- 🎬 Searchable movie selection
+
+- ðŸ¤– Content-based movie recommendation
+
+- ðŸ§  NLP-based text preprocessing
+
+- ðŸ“Š CountVectorizer feature extraction
+
+- ðŸ“ Cosine similarity
+
+- ðŸŽ­ Genre-based similarity
+
+- ðŸŽ¯ Keyword-based similarity
+
+- ðŸ‘¨â€ðŸŽ¤ Cast-based similarity
+
+- ðŸŽ¥ Director-based similarity
+
+- ðŸ–¼ï¸ TMDB movie poster retrieval
+
+- â–¶ï¸ YouTube trailer retrieval through TMDB
+
+- ðŸ”Ž TMDB fallback movie search
+
+- ðŸŽ¨ Custom Streamlit interface
+
+- ðŸ” Secure API key management using Streamlit Secrets
+
+- ðŸ’¾ Serialized ML artifacts using Pickle
+
+- â˜ï¸ Streamlit deployment support
+
+- ðŸ“¦ Git LFS support for large model files
 
 
 
-\# 🧠 How the Recommendation System Works
+---
+
+
+
+# ðŸ§  How the Recommendation System Works
 
 
 
@@ -220,117 +220,117 @@ The recommendation pipeline is:
 
 &#x20;                   TMDB Credits Dataset
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                      Merge Data
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                  Select Required Columns
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                   Handle Missing Values
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                   Parse JSON-like Data
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
-&#x20;             ┌───────────────────────────┐
+&#x20;             â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
 
-&#x20;             │       Feature Extraction  │
+&#x20;             â”‚       Feature Extraction  â”‚
 
-&#x20;             │                           │
+&#x20;             â”‚                           â”‚
 
-&#x20;             │ • Overview                │
+&#x20;             â”‚ â€¢ Overview                â”‚
 
-&#x20;             │ • Genres                  │
+&#x20;             â”‚ â€¢ Genres                  â”‚
 
-&#x20;             │ • Keywords                │
+&#x20;             â”‚ â€¢ Keywords                â”‚
 
-&#x20;             │ • Top 3 Cast Members      │
+&#x20;             â”‚ â€¢ Top 3 Cast Members      â”‚
 
-&#x20;             │ • Director                │
+&#x20;             â”‚ â€¢ Director                â”‚
 
-&#x20;             └───────────────────────────┘
+&#x20;             â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                    Create "tags"
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                   Text Cleaning
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                   Lowercase Text
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                   Porter Stemming
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                 CountVectorizer
 
-&#x20;                 max\_features=5000
+&#x20;                 max_features=5000
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                   Movie Vectors
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                 Cosine Similarity
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;               Similarity Matrix
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                Find Top 5 Movies
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                   Streamlit App
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                     TMDB API
 
@@ -342,11 +342,11 @@ The recommendation pipeline is:
 
 
 
-\---
+---
 
 
 
-\# 🛠️ Tech Stack
+# ðŸ› ï¸ Tech Stack
 
 
 
@@ -382,83 +382,83 @@ The recommendation pipeline is:
 
 
 
-\---
+---
 
 
 
-\# 📂 Project Structure
+# ðŸ“‚ Project Structure
 
 
 
 ```text
 
-Movie\_Recommender\_System/
+Movie_Recommender_System/
 
-│
+â”‚
 
-├── app.py
+â”œâ”€â”€ app.py
 
-├── train\_model.py
+â”œâ”€â”€ train_model.py
 
-├── Movie\_Recommender\_System.ipynb
+â”œâ”€â”€ Movie_Recommender_System.ipynb
 
-│
+â”‚
 
-├── tmdb\_5000\_movies.csv
+â”œâ”€â”€ tmdb_5000_movies.csv
 
-├── tmdb\_5000\_credits.csv
+â”œâ”€â”€ tmdb_5000_credits.csv
 
-│
+â”‚
 
-├── movies.pkl
+â”œâ”€â”€ movies.pkl
 
-├── movie\_dict.pkl
+â”œâ”€â”€ movie_dict.pkl
 
-├── similarity.pkl
+â”œâ”€â”€ similarity.pkl
 
-│
+â”‚
 
-├── requirements.txt
+â”œâ”€â”€ requirements.txt
 
-├── Procfile
+â”œâ”€â”€ Procfile
 
-├── setup.sh
+â”œâ”€â”€ setup.sh
 
-├── .gitignore
+â”œâ”€â”€ .gitignore
 
-├── .gitattributes
+â”œâ”€â”€ .gitattributes
 
-│
+â”‚
 
-├── .streamlit/
+â”œâ”€â”€ .streamlit/
 
-│   └── secrets.toml
+â”‚   â””â”€â”€ secrets.toml
 
-│
+â”‚
 
-├── screenshots/
+â”œâ”€â”€ screenshots/
 
-│   ├── home.png
+â”‚   â”œâ”€â”€ home.png
 
-│   └── recommendations.png
+â”‚   â””â”€â”€ recommendations.png
 
-│
+â”‚
 
-└── README.md
+â””â”€â”€ README.md
 
 ```
 
 
 
-\---
+---
 
 
 
-\# 📄 Important Files
+# ðŸ“„ Important Files
 
 
 
-\## `app.py`
+## `app.py`
 
 
 
@@ -470,27 +470,27 @@ It:
 
 
 
-\- Loads the recommendation model
+- Loads the recommendation model
 
-\- Displays the movie selector
+- Displays the movie selector
 
-\- Generates recommendations
+- Generates recommendations
 
-\- Connects to TMDB
+- Connects to TMDB
 
-\- Retrieves posters
+- Retrieves posters
 
-\- Retrieves trailers
+- Retrieves trailers
 
-\- Displays the recommendation results
-
-
-
-\---
+- Displays the recommendation results
 
 
 
-\## `train\_model.py`
+---
+
+
+
+## `train_model.py`
 
 
 
@@ -502,25 +502,25 @@ It performs:
 
 
 
-\- Dataset loading
+- Dataset loading
 
-\- Dataset merging
+- Dataset merging
 
-\- Data cleaning
+- Data cleaning
 
-\- Feature extraction
+- Feature extraction
 
-\- Tag creation
+- Tag creation
 
-\- Text preprocessing
+- Text preprocessing
 
-\- Porter stemming
+- Porter stemming
 
-\- CountVectorizer
+- CountVectorizer
 
-\- Cosine similarity
+- Cosine similarity
 
-\- Model serialization
+- Model serialization
 
 
 
@@ -530,7 +530,7 @@ Running:
 
 ```bash
 
-python train\_model.py
+python train_model.py
 
 ```
 
@@ -540,11 +540,11 @@ generates the required `.pkl` files.
 
 
 
-\---
+---
 
 
 
-\## `Movie\_Recommender\_System.ipynb`
+## `Movie_Recommender_System.ipynb`
 
 
 
@@ -552,11 +552,11 @@ Jupyter Notebook containing the data analysis, preprocessing, feature engineerin
 
 
 
-\---
+---
 
 
 
-\## `tmdb\_5000\_movies.csv`
+## `tmdb_5000_movies.csv`
 
 
 
@@ -564,11 +564,11 @@ Contains movie metadata from the TMDB 5000 dataset.
 
 
 
-\---
+---
 
 
 
-\## `tmdb\_5000\_credits.csv`
+## `tmdb_5000_credits.csv`
 
 
 
@@ -576,11 +576,11 @@ Contains movie cast and crew information.
 
 
 
-\---
+---
 
 
 
-\## `movies.pkl`
+## `movies.pkl`
 
 
 
@@ -588,11 +588,11 @@ Stores the processed movie DataFrame.
 
 
 
-\---
+---
 
 
 
-\## `movie\_dict.pkl`
+## `movie_dict.pkl`
 
 
 
@@ -600,11 +600,11 @@ Stores processed movie information in dictionary form for efficient loading by t
 
 
 
-\---
+---
 
 
 
-\## `similarity.pkl`
+## `similarity.pkl`
 
 
 
@@ -616,11 +616,11 @@ This file can be large because it contains similarity scores between thousands o
 
 
 
-\---
+---
 
 
 
-\## `requirements.txt`
+## `requirements.txt`
 
 
 
@@ -628,11 +628,11 @@ Contains the Python dependencies required to run the application.
 
 
 
-\---
+---
 
 
 
-\## `Procfile`
+## `Procfile`
 
 
 
@@ -640,11 +640,11 @@ Contains the command required for deployment on platforms supporting Procfile-ba
 
 
 
-\---
+---
 
 
 
-\## `setup.sh`
+## `setup.sh`
 
 
 
@@ -652,15 +652,15 @@ Contains Streamlit server configuration used during deployment.
 
 
 
-\---
+---
 
 
 
-\# 🔬 Machine Learning Approach
+# ðŸ”¬ Machine Learning Approach
 
 
 
-\## 1. Data Loading
+## 1. Data Loading
 
 
 
@@ -670,9 +670,9 @@ The project uses two datasets:
 
 ```text
 
-tmdb\_5000\_movies.csv
+tmdb_5000_movies.csv
 
-tmdb\_5000\_credits.csv
+tmdb_5000_credits.csv
 
 ```
 
@@ -682,11 +682,11 @@ They contain movie information and credits respectively.
 
 
 
-\---
+---
 
 
 
-\# 2. Data Merging
+# 2. Data Merging
 
 
 
@@ -712,11 +712,11 @@ movies = movies.merge(
 
 
 
-\---
+---
 
 
 
-\# 3. Feature Selection
+# 3. Feature Selection
 
 
 
@@ -726,7 +726,7 @@ The following columns are retained:
 
 ```text
 
-movie\_id
+movie_id
 
 title
 
@@ -744,11 +744,11 @@ crew
 
 
 
-\---
+---
 
 
 
-\# 4. Handling Missing Values
+# 4. Handling Missing Values
 
 
 
@@ -762,25 +762,25 @@ For example:
 
 ```python
 
-movies\["overview"] = movies\["overview"].fillna("")
+movies["overview"] = movies["overview"].fillna("")
 
-movies\["genres"] = movies\["genres"].fillna("\[]")
+movies["genres"] = movies["genres"].fillna("[]")
 
-movies\["keywords"] = movies\["keywords"].fillna("\[]")
+movies["keywords"] = movies["keywords"].fillna("[]")
 
-movies\["cast"] = movies\["cast"].fillna("\[]")
+movies["cast"] = movies["cast"].fillna("[]")
 
-movies\["crew"] = movies\["crew"].fillna("\[]")
+movies["crew"] = movies["crew"].fillna("[]")
 
 ```
 
 
 
-\---
+---
 
 
 
-\# 5. Parsing JSON-like Data
+# 5. Parsing JSON-like Data
 
 
 
@@ -794,7 +794,7 @@ They are converted into Python objects using:
 
 ```python
 
-ast.literal\_eval()
+ast.literal_eval()
 
 ```
 
@@ -806,7 +806,7 @@ For example:
 
 ```text
 
-\[
+[
 
 &#x20;   {
 
@@ -834,11 +834,11 @@ is converted into a Python list of dictionaries.
 
 
 
-\---
+---
 
 
 
-\# 6. Feature Extraction
+# 6. Feature Extraction
 
 
 
@@ -846,7 +846,7 @@ The system extracts the following features.
 
 
 
-\### Genres
+### Genres
 
 
 
@@ -870,11 +870,11 @@ ScienceFiction
 
 
 
-\---
+---
 
 
 
-\### Keywords
+### Keywords
 
 
 
@@ -900,11 +900,11 @@ robot
 
 
 
-\---
+---
 
 
 
-\### Cast
+### Cast
 
 
 
@@ -928,11 +928,11 @@ BillPullman
 
 
 
-\---
+---
 
 
 
-\### Director
+### Director
 
 
 
@@ -952,11 +952,11 @@ ChristopherNolan
 
 
 
-\---
+---
 
 
 
-\# 7. Creating the `tags` Feature
+# 7. Creating the `tags` Feature
 
 
 
@@ -968,19 +968,19 @@ All relevant information is combined into one text feature:
 
 Overview
 
-\+
++
 
 Genres
 
-\+
++
 
 Keywords
 
-\+
++
 
 Top 3 Cast
 
-\+
++
 
 Director
 
@@ -1016,11 +1016,11 @@ This allows the movie to be represented as a single text document.
 
 
 
-\---
+---
 
 
 
-\# 8. Text Preprocessing
+# 8. Text Preprocessing
 
 
 
@@ -1028,15 +1028,15 @@ The generated tags are:
 
 
 
-\- Converted to strings
+- Converted to strings
 
-\- Converted to lowercase
+- Converted to lowercase
 
-\- Cleaned
+- Cleaned
 
-\- Tokenized
+- Tokenized
 
-\- Stemmed
+- Stemmed
 
 
 
@@ -1068,11 +1068,11 @@ love
 
 
 
-\---
+---
 
 
 
-\# 9. Porter Stemmer
+# 9. Porter Stemmer
 
 
 
@@ -1096,11 +1096,11 @@ The stemmer is applied to the words in the `tags` feature.
 
 
 
-\---
+---
 
 
 
-\# 10. CountVectorizer
+# 10. CountVectorizer
 
 
 
@@ -1112,9 +1112,9 @@ The processed text is converted into numerical vectors using:
 
 CountVectorizer(
 
-&#x20;   max\_features=5000,
+&#x20;   max_features=5000,
 
-&#x20;   stop\_words="english"
+&#x20;   stop_words="english"
 
 )
 
@@ -1132,21 +1132,21 @@ Example:
 
 ```text
 
-Movie A → \[0, 1, 0, 3, 0, 1, ...]
+Movie A â†’ [0, 1, 0, 3, 0, 1, ...]
 
-Movie B → \[1, 0, 0, 2, 1, 0, ...]
+Movie B â†’ [1, 0, 0, 2, 1, 0, ...]
 
-Movie C → \[0, 1, 1, 0, 0, 2, ...]
+Movie C â†’ [0, 1, 1, 0, 0, 2, ...]
 
 ```
 
 
 
-\---
+---
 
 
 
-\# 11. Cosine Similarity
+# 11. Cosine Similarity
 
 
 
@@ -1156,11 +1156,11 @@ Cosine similarity is used to measure similarity between movie vectors.
 
 ```python
 
-from sklearn.metrics.pairwise import cosine\_similarity
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 
-similarity = cosine\_similarity(vectors)
+similarity = cosine_similarity(vectors)
 
 ```
 
@@ -1192,11 +1192,11 @@ A higher similarity score indicates that the movies have more similar content re
 
 
 
-\---
+---
 
 
 
-\# 🎯 Recommendation Process
+# ðŸŽ¯ Recommendation Process
 
 
 
@@ -1204,7 +1204,7 @@ When a user selects a movie:
 
 
 
-\### Step 1
+### Step 1
 
 
 
@@ -1214,17 +1214,17 @@ Find the selected movie's index.
 
 ```python
 
-movie\_index = movies.index\[
+movie_index = movies.index[
 
-&#x20;   movies\["title"] == selected\_movie
+&#x20;   movies["title"] == selected_movie
 
-]\[0]
+][0]
 
 ```
 
 
 
-\### Step 2
+### Step 2
 
 
 
@@ -1234,13 +1234,13 @@ Retrieve the movie's similarity scores.
 
 ```python
 
-distances = similarity\[movie\_index]
+distances = similarity[movie_index]
 
 ```
 
 
 
-\### Step 3
+### Step 3
 
 
 
@@ -1256,7 +1256,7 @@ sorted(
 
 &#x20;   reverse=True,
 
-&#x20;   key=lambda x: x\[1]
+&#x20;   key=lambda x: x[1]
 
 )
 
@@ -1264,7 +1264,7 @@ sorted(
 
 
 
-\### Step 4
+### Step 4
 
 
 
@@ -1272,7 +1272,7 @@ Remove the selected movie itself.
 
 
 
-\### Step 5
+### Step 5
 
 
 
@@ -1280,11 +1280,11 @@ Return the top 5 similar movies.
 
 
 
-\---
+---
 
 
 
-\# 🌐 Streamlit Application
+# ðŸŒ Streamlit Application
 
 
 
@@ -1296,31 +1296,31 @@ The application:
 
 
 
-1\. Loads `movie\_dict.pkl`
+1. Loads `movie_dict.pkl`
 
-2\. Loads `similarity.pkl`
+2. Loads `similarity.pkl`
 
-3\. Creates a searchable movie selector
+3. Creates a searchable movie selector
 
-4\. Accepts the selected movie
+4. Accepts the selected movie
 
-5\. Calculates recommendations
+5. Calculates recommendations
 
-6\. Retrieves movie information from TMDB
+6. Retrieves movie information from TMDB
 
-7\. Retrieves movie posters
+7. Retrieves movie posters
 
-8\. Retrieves trailers
+8. Retrieves trailers
 
-9\. Displays five recommendations
-
-
-
-\---
+9. Displays five recommendations
 
 
 
-\# 🎬 TMDB API Integration
+---
+
+
+
+# 🎬 TMDB API Integration
 
 
 
@@ -1332,15 +1332,15 @@ The API is used for:
 
 
 
-\- Movie search
+- Movie search
 
-\- Movie information
+- Movie information
 
-\- Movie posters
+- Movie posters
 
-\- Movie videos
+- Movie videos
 
-\- Trailer information
+- Trailer information
 
 
 
@@ -1356,15 +1356,15 @@ If a direct TMDB movie ID lookup fails, the application searches TMDB using the 
 
 
 
-\---
+---
 
 
 
-\# 🔐 API Key Configuration
+# ðŸ” API Key Configuration
 
 
 
-The TMDB API key should \*\*never be hard-coded into the Python source code\*\*.
+The TMDB API key should **never be hard-coded into the Python source code**.
 
 
 
@@ -1386,7 +1386,7 @@ Add:
 
 ```toml
 
-TMDB\_API\_KEY = "YOUR\_TMDB\_API\_KEY"
+TMDB_API_KEY = "YOUR_TMDB_API_KEY"
 
 ```
 
@@ -1398,13 +1398,13 @@ The application reads the key using:
 
 ```python
 
-st.secrets\["TMDB\_API\_KEY"]
+st.secrets["TMDB_API_KEY"]
 
 ```
 
 
 
-\### ⚠️ Important
+### âš ï¸ Important
 
 
 
@@ -1436,21 +1436,21 @@ Add it to `.gitignore`:
 
 
 
-\---
+---
 
 
 
-\# 💻 Installation
+# ðŸ’» Installation
 
 
 
-\## 1. Clone the Repository
+## 1. Clone the Repository
 
 
 
 ```bash
 
-git clone https://github.com/ankansadhukhan2025-ui/Movie\_Recommender\_System.git
+git clone https://github.com/ankansadhukhan2025-ui/Movie_Recommender_System.git
 
 ```
 
@@ -1462,21 +1462,21 @@ Navigate into the project:
 
 ```bash
 
-cd Movie\_Recommender\_System
+cd Movie_Recommender_System
 
 ```
 
 
 
-\---
+---
 
 
 
-\# 2. Create a Virtual Environment
+# 2. Create a Virtual Environment
 
 
 
-\### Windows
+### Windows
 
 
 
@@ -1500,7 +1500,7 @@ Activate it:
 
 
 
-\### Linux/macOS
+### Linux/macOS
 
 
 
@@ -1524,11 +1524,11 @@ source .venv/bin/activate
 
 
 
-\---
+---
 
 
 
-\# 3. Install Dependencies
+# 3. Install Dependencies
 
 
 
@@ -1540,11 +1540,11 @@ pip install -r requirements.txt
 
 
 
-\---
+---
 
 
 
-\# 4. Configure TMDB API Key
+# 4. Configure TMDB API Key
 
 
 
@@ -1566,17 +1566,17 @@ Add:
 
 ```toml
 
-TMDB\_API\_KEY = "YOUR\_TMDB\_API\_KEY"
+TMDB_API_KEY = "YOUR_TMDB_API_KEY"
 
 ```
 
 
 
-\---
+---
 
 
 
-\# 5. Generate the Model
+# 5. Generate the Model
 
 
 
@@ -1590,7 +1590,7 @@ Otherwise, generate them using:
 
 ```bash
 
-python train\_model.py
+python train_model.py
 
 ```
 
@@ -1604,7 +1604,7 @@ This creates:
 
 movies.pkl
 
-movie\_dict.pkl
+movie_dict.pkl
 
 similarity.pkl
 
@@ -1612,11 +1612,11 @@ similarity.pkl
 
 
 
-\---
+---
 
 
 
-\# 6. Run the Streamlit Application
+# 6. Run the Streamlit Application
 
 
 
@@ -1640,15 +1640,15 @@ http://localhost:8501
 
 
 
-\---
+---
 
 
 
-\# 📊 Dataset
+# ðŸ“Š Dataset
 
 
 
-This project uses the \*\*TMDB 5000 Movie Dataset\*\*.
+This project uses the **TMDB 5000 Movie Dataset**.
 
 
 
@@ -1658,9 +1658,9 @@ The project uses:
 
 ```text
 
-tmdb\_5000\_movies.csv
+tmdb_5000_movies.csv
 
-tmdb\_5000\_credits.csv
+tmdb_5000_credits.csv
 
 ```
 
@@ -1670,19 +1670,19 @@ The dataset provides information including:
 
 
 
-\- Movie titles
+- Movie titles
 
-\- Movie overviews
+- Movie overviews
 
-\- Genres
+- Genres
 
-\- Keywords
+- Keywords
 
-\- Cast
+- Cast
 
-\- Crew
+- Crew
 
-\- Movie IDs
+- Movie IDs
 
 
 
@@ -1690,11 +1690,11 @@ The TMDB API is used separately by the application for additional poster and vid
 
 
 
-\---
+---
 
 
 
-\# 📈 Recommendation Example
+# ðŸ“ˆ Recommendation Example
 
 
 
@@ -1722,11 +1722,11 @@ The exact recommendations depend on the dataset, preprocessing pipeline, and fea
 
 
 
-\---
+---
 
 
 
-\# 🧪 Example Workflow
+# ðŸ§ª Example Workflow
 
 
 
@@ -1734,61 +1734,61 @@ The exact recommendations depend on the dataset, preprocessing pipeline, and fea
 
 User
 
-&#x20;│
+&#x20;â”‚
 
-&#x20;▼
+&#x20;â–¼
 
 Select Movie
 
-&#x20;│
+&#x20;â”‚
 
-&#x20;▼
+&#x20;â–¼
 
 Streamlit Application
 
-&#x20;│
+&#x20;â”‚
 
-&#x20;▼
+&#x20;â–¼
 
 Find Movie Index
 
-&#x20;│
+&#x20;â”‚
 
-&#x20;▼
+&#x20;â–¼
 
 Retrieve Similarity Scores
 
-&#x20;│
+&#x20;â”‚
 
-&#x20;▼
+&#x20;â–¼
 
 Sort Similarity Scores
 
-&#x20;│
+&#x20;â”‚
 
-&#x20;▼
+&#x20;â–¼
 
 Select Top 5 Movies
 
-&#x20;│
+&#x20;â”‚
 
-&#x20;├───────────────┐
+&#x20;â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
 
-&#x20;▼               ▼
+&#x20;â–¼               â–¼
 
 TMDB API       Recommendation
 
-&#x20;│
+&#x20;â”‚
 
-&#x20;├── Poster
+&#x20;â”œâ”€â”€ Poster
 
-&#x20;│
+&#x20;â”‚
 
-&#x20;└── Trailer
+&#x20;â””â”€â”€ Trailer
 
-&#x20;│
+&#x20;â”‚
 
-&#x20;▼
+&#x20;â–¼
 
 Display Results
 
@@ -1796,11 +1796,11 @@ Display Results
 
 
 
-\---
+---
 
 
 
-\# 📦 Model Artifacts
+# ðŸ“¦ Model Artifacts
 
 
 
@@ -1808,7 +1808,7 @@ The project uses serialized files to avoid rebuilding the recommendation model e
 
 
 
-\### `movies.pkl`
+### `movies.pkl`
 
 
 
@@ -1816,7 +1816,7 @@ Processed movie DataFrame.
 
 
 
-\### `movie\_dict.pkl`
+### `movie_dict.pkl`
 
 
 
@@ -1824,7 +1824,7 @@ Movie metadata stored as a list of dictionaries.
 
 
 
-\### `similarity.pkl`
+### `similarity.pkl`
 
 
 
@@ -1836,11 +1836,11 @@ This allows the Streamlit application to load the precomputed recommendation dat
 
 
 
-\---
+---
 
 
 
-\# ⚠️ Large File Handling
+# âš ï¸ Large File Handling
 
 
 
@@ -1874,7 +1874,7 @@ Track pickle files:
 
 ```bash
 
-git lfs track "\*.pkl"
+git lfs track "*.pkl"
 
 ```
 
@@ -1898,25 +1898,25 @@ git push origin main
 
 
 
-\---
+---
 
 
 
-\# 🧹 Recommended `.gitignore`
+# ðŸ§¹ Recommended `.gitignore`
 
 
 
 ```gitignore
 
-\# Python
+# Python
 
-\_\_pycache\_\_/
+__pycache__/
 
-\*.py\[cod]
+*.py[cod]
 
 
 
-\# Virtual environment
+# Virtual environment
 
 .venv/
 
@@ -1926,19 +1926,19 @@ env/
 
 
 
-\# Jupyter
+# Jupyter
 
-.ipynb\_checkpoints/
+.ipynb_checkpoints/
 
 
 
-\# Streamlit
+# Streamlit
 
 .streamlit/secrets.toml
 
 
 
-\# IDE
+# IDE
 
 .vscode/
 
@@ -1946,29 +1946,29 @@ env/
 
 
 
-\# OS
+# OS
 
-.DS\_Store
+.DS_Store
 
 Thumbs.db
 
 
 
-\# Temporary files
+# Temporary files
 
-\*.tmp
+*.tmp
 
-\*.log
+*.log
 
 ```
 
 
 
-\---
+---
 
 
 
-\# 🚀 Deployment
+# ðŸš€ Deployment
 
 
 
@@ -1984,39 +1984,39 @@ Typical deployment steps are:
 
 GitHub Repository
 
-&#x20;      │
+&#x20;      â”‚
 
-&#x20;      ▼
+&#x20;      â–¼
 
 Connect Repository
 
-&#x20;      │
+&#x20;      â”‚
 
-&#x20;      ▼
+&#x20;      â–¼
 
 Select app.py
 
-&#x20;      │
+&#x20;      â”‚
 
-&#x20;      ▼
+&#x20;      â–¼
 
 Configure Python Dependencies
 
-&#x20;      │
+&#x20;      â”‚
 
-&#x20;      ▼
+&#x20;      â–¼
 
-Add TMDB\_API\_KEY Secret
+Add TMDB_API_KEY Secret
 
-&#x20;      │
+&#x20;      â”‚
 
-&#x20;      ▼
+&#x20;      â–¼
 
 Deploy
 
-&#x20;      │
+&#x20;      â”‚
 
-&#x20;      ▼
+&#x20;      â–¼
 
 Streamlit Application
 
@@ -2034,7 +2034,7 @@ app.py
 
 requirements.txt
 
-movie\_dict.pkl
+movie_dict.pkl
 
 similarity.pkl
 
@@ -2050,11 +2050,11 @@ The TMDB API key should be added through the deployment platform's secret-manage
 
 
 
-\---
+---
 
 
 
-\# 🔮 Future Improvements
+# ðŸ”® Future Improvements
 
 
 
@@ -2062,7 +2062,7 @@ The current system is a content-based recommender. Several improvements could ma
 
 
 
-\## 1. Hybrid Recommendation
+## 1. Hybrid Recommendation
 
 
 
@@ -2078,7 +2078,7 @@ Content-Based
 
 Collaborative Filtering
 
-&#x20;     ↓
+&#x20;     â†“
 
 Hybrid Recommendation
 
@@ -2086,11 +2086,11 @@ Hybrid Recommendation
 
 
 
-\---
+---
 
 
 
-\## 2. User Personalization
+## 2. User Personalization
 
 
 
@@ -2102,19 +2102,19 @@ Add user accounts and recommendation history.
 
 User
 
-&#x20;↓
+&#x20;â†“
 
 Watch History
 
-&#x20;↓
+&#x20;â†“
 
 Favorite Movies
 
-&#x20;↓
+&#x20;â†“
 
 Genre Preferences
 
-&#x20;↓
+&#x20;â†“
 
 Personalized Recommendations
 
@@ -2122,11 +2122,11 @@ Personalized Recommendations
 
 
 
-\---
+---
 
 
 
-\## 3. Movie Ratings
+## 3. Movie Ratings
 
 
 
@@ -2134,21 +2134,21 @@ Display:
 
 
 
-\- TMDB rating
+- TMDB rating
 
-\- Vote count
+- Vote count
 
-\- Release date
+- Release date
 
-\- Runtime
-
-
-
-\---
+- Runtime
 
 
 
-\## 4. Genre Filtering
+---
+
+
+
+## 4. Genre Filtering
 
 
 
@@ -2156,29 +2156,29 @@ Allow users to filter recommendations by:
 
 
 
-\- Action
+- Action
 
-\- Comedy
+- Comedy
 
-\- Drama
+- Drama
 
-\- Thriller
+- Thriller
 
-\- Romance
+- Romance
 
-\- Sci-Fi
+- Sci-Fi
 
-\- Horror
+- Horror
 
-\- Adventure
-
-
-
-\---
+- Adventure
 
 
 
-\## 5. Better Search
+---
+
+
+
+## 5. Better Search
 
 
 
@@ -2186,21 +2186,21 @@ Improve movie searching using:
 
 
 
-\- Fuzzy matching
+- Fuzzy matching
 
-\- Search suggestions
+- Search suggestions
 
-\- Autocomplete
+- Autocomplete
 
-\- Alternative titles
-
-
-
-\---
+- Alternative titles
 
 
 
-\## 6. Recommendation Evaluation
+---
+
+
+
+## 6. Recommendation Evaluation
 
 
 
@@ -2208,23 +2208,23 @@ Introduce recommendation-system evaluation metrics such as:
 
 
 
-\- Precision
+- Precision
 
-\- Recall
+- Recall
 
-\- Mean Average Precision
+- Mean Average Precision
 
-\- Diversity
+- Diversity
 
-\- Novelty
-
-
-
-\---
+- Novelty
 
 
 
-\## 7. Improved NLP
+---
+
+
+
+## 7. Improved NLP
 
 
 
@@ -2236,25 +2236,25 @@ Future versions could explore:
 
 
 
-\- TF-IDF
+- TF-IDF
 
-\- Word2Vec
+- Word2Vec
 
-\- GloVe
+- GloVe
 
-\- FastText
+- FastText
 
-\- Sentence Transformers
+- Sentence Transformers
 
-\- BERT embeddings
-
-
-
-\---
+- BERT embeddings
 
 
 
-\## 8. Better Similarity Models
+---
+
+
+
+## 8. Better Similarity Models
 
 
 
@@ -2266,15 +2266,15 @@ Future implementations could compare:
 
 CountVectorizer
 
-&#x20;      ↓
+&#x20;      â†“
 
 TF-IDF
 
-&#x20;      ↓
+&#x20;      â†“
 
 Word Embeddings
 
-&#x20;      ↓
+&#x20;      â†“
 
 Transformer Embeddings
 
@@ -2282,11 +2282,11 @@ Transformer Embeddings
 
 
 
-\---
+---
 
 
 
-\## 9. Recommendation History
+## 9. Recommendation History
 
 
 
@@ -2294,11 +2294,11 @@ Allow users to see previously generated recommendations.
 
 
 
-\---
+---
 
 
 
-\## 10. More Detailed Movie Pages
+## 10. More Detailed Movie Pages
 
 
 
@@ -2306,37 +2306,37 @@ A future version could display:
 
 
 
-\- Poster
+- Poster
 
-\- Overview
+- Overview
 
-\- Genres
+- Genres
 
-\- Cast
+- Cast
 
-\- Director
+- Director
 
-\- Rating
+- Rating
 
-\- Release date
+- Release date
 
-\- Runtime
+- Runtime
 
-\- Budget
+- Budget
 
-\- Revenue
+- Revenue
 
-\- Trailer
+- Trailer
 
-\- Similar movies
-
-
-
-\---
+- Similar movies
 
 
 
-\# 📚 What I Learned
+---
+
+
+
+# ðŸ“š What I Learned
 
 
 
@@ -2344,125 +2344,125 @@ This project helped me develop practical experience in:
 
 
 
-\### Python
+### Python
 
 
 
-\- Functions
+- Functions
 
-\- File handling
+- File handling
 
-\- Exception handling
+- Exception handling
 
-\- API requests
+- API requests
 
-\- Object/data serialization
+- Object/data serialization
 
 
 
-\### Data Science
+### Data Science
 
 
 
-\- Pandas
+- Pandas
 
-\- Data cleaning
+- Data cleaning
 
-\- Data transformation
+- Data transformation
 
-\- Feature engineering
+- Feature engineering
 
 
 
-\### Machine Learning
+### Machine Learning
 
 
 
-\- Feature extraction
+- Feature extraction
 
-\- Vectorization
+- Vectorization
 
-\- Cosine similarity
+- Cosine similarity
 
-\- Recommendation systems
+- Recommendation systems
 
 
 
-\### NLP
+### NLP
 
 
 
-\- Text preprocessing
+- Text preprocessing
 
-\- Tokenization
+- Tokenization
 
-\- Stop-word removal
+- Stop-word removal
 
-\- Stemming
+- Stemming
 
-\- CountVectorizer
+- CountVectorizer
 
 
 
-\### APIs
+### APIs
 
 
 
-\- REST API integration
+- REST API integration
 
-\- HTTP requests
+- HTTP requests
 
-\- JSON responses
+- JSON responses
 
-\- API authentication
+- API authentication
 
-\- Error handling
+- Error handling
 
-\- API fallback logic
+- API fallback logic
 
 
 
-\### Streamlit
+### Streamlit
 
 
 
-\- Interactive UI
+- Interactive UI
 
-\- Select boxes
+- Select boxes
 
-\- Buttons
+- Buttons
 
-\- Columns
+- Columns
 
-\- Images
+- Images
 
-\- Caching
+- Caching
 
-\- Secrets management
+- Secrets management
 
 
 
-\### Software Development
+### Software Development
 
 
 
-\- Git
+- Git
 
-\- GitHub
+- GitHub
 
-\- Git LFS
+- Git LFS
 
-\- Environment management
+- Environment management
 
-\- Deployment configuration
+- Deployment configuration
 
 
 
-\---
+---
 
 
 
-\# 🧩 Challenges Faced
+# ðŸ§© Challenges Faced
 
 
 
@@ -2470,7 +2470,7 @@ Some practical challenges addressed by this project include:
 
 
 
-\### Handling JSON-like Dataset Columns
+### Handling JSON-like Dataset Columns
 
 
 
@@ -2484,17 +2484,17 @@ This required parsing with:
 
 ```python
 
-ast.literal\_eval()
+ast.literal_eval()
 
 ```
 
 
 
-\---
+---
 
 
 
-\### Missing Data
+### Missing Data
 
 
 
@@ -2506,11 +2506,11 @@ The preprocessing pipeline handles missing values before feature extraction.
 
 
 
-\---
+---
 
 
 
-\### Movie Matching
+### Movie Matching
 
 
 
@@ -2522,11 +2522,11 @@ The application therefore includes fallback title-search logic.
 
 
 
-\---
+---
 
 
 
-\### Large Similarity Matrix
+### Large Similarity Matrix
 
 
 
@@ -2538,11 +2538,11 @@ The precomputed matrix is serialized and stored so the Streamlit application doe
 
 
 
-\---
+---
 
 
 
-\### API Failures
+### API Failures
 
 
 
@@ -2550,17 +2550,17 @@ TMDB requests can fail because of:
 
 
 
-\- Invalid API keys
+- Invalid API keys
 
-\- Network problems
+- Network problems
 
-\- Missing movie information
+- Missing movie information
 
-\- API rate limits
+- API rate limits
 
-\- Missing posters
+- Missing posters
 
-\- Missing trailers
+- Missing trailers
 
 
 
@@ -2568,11 +2568,11 @@ The application includes fallback and error-handling logic.
 
 
 
-\---
+---
 
 
 
-\# 🔒 Security
+# ðŸ”’ Security
 
 
 
@@ -2580,25 +2580,25 @@ Never commit API keys or other secrets to GitHub.
 
 
 
-\### ❌ Do not do this
+### âŒ Do not do this
 
 
 
 ```python
 
-TMDB\_API\_KEY = "123456789abcdef"
+TMDB_API_KEY = "123456789abcdef"
 
 ```
 
 
 
-\### ✅ Use Streamlit Secrets
+### âœ… Use Streamlit Secrets
 
 
 
 ```toml
 
-TMDB\_API\_KEY = "YOUR\_TMDB\_API\_KEY"
+TMDB_API_KEY = "YOUR_TMDB_API_KEY"
 
 ```
 
@@ -2610,7 +2610,7 @@ and:
 
 ```python
 
-st.secrets\["TMDB\_API\_KEY"]
+st.secrets["TMDB_API_KEY"]
 
 ```
 
@@ -2628,15 +2628,15 @@ Also make sure the following file is ignored:
 
 
 
-\---
+---
 
 
 
-\# 📜 License
+# ðŸ“œ License
 
 
 
-This project is intended for \*\*educational and portfolio purposes\*\*.
+This project is intended for **educational and portfolio purposes**.
 
 
 
@@ -2648,21 +2648,21 @@ For information about TMDB, refer to the official TMDB documentation and terms.
 
 
 
-\---
+---
 
 
 
-\# 👨‍💻 Author
+# ðŸ‘¨â€ðŸ’» Author
 
 
 
-\## Ankan Sadhukhan
+## Ankan Sadhukhan
 
 
 
-\*\*M.Sc. Mathematics and Computing\*\*  
+**M.Sc. Mathematics and Computing**  
 
-\*\*Indian Institute of Technology (Indian School of Mines), Dhanbad\*\*
+**Indian Institute of Technology (Indian School of Mines), Dhanbad**
 
 
 
@@ -2670,51 +2670,51 @@ I am interested in:
 
 
 
-\- Machine Learning
+- Machine Learning
 
-\- Data Science
+- Data Science
 
-\- Natural Language Processing
+- Natural Language Processing
 
-\- Recommendation Systems
+- Recommendation Systems
 
-\- Python
+- Python
 
-\- Mathematical Computing
+- Mathematical Computing
 
-\- Artificial Intelligence
-
-
-
-\---
+- Artificial Intelligence
 
 
 
-\# 🔗 Connect With Me
+---
 
 
 
-\### 💻 GitHub
+# ðŸ”— Connect With Me
 
 
 
-\[Ankan Sadhukhan](https://github.com/ankansadhukhan2025-ui)
+### ðŸ’» GitHub
 
 
 
-\### 🔗 LinkedIn
+[Ankan Sadhukhan](https://github.com/ankansadhukhan2025-ui)
 
 
 
-\[Ankan Sadhukhan](https://www.linkedin.com/in/ankan-sadhukhan-5b9203378)
+### ðŸ”— LinkedIn
 
 
 
-\---
+[Ankan Sadhukhan](https://www.linkedin.com/in/ankan-sadhukhan-5b9203378)
 
 
 
-\# ⭐ Support
+---
+
+
+
+# â­ Support
 
 
 
@@ -2722,23 +2722,23 @@ If you find this project useful, consider:
 
 
 
-⭐ Starring the repository  
+â­ Starring the repository  
 
-🍴 Forking the project  
+ðŸ´ Forking the project  
 
-🐛 Reporting issues  
+ðŸ› Reporting issues  
 
-💡 Suggesting improvements  
+ðŸ’¡ Suggesting improvements  
 
-📢 Sharing the project
-
-
-
-\---
+ðŸ“¢ Sharing the project
 
 
 
-\# 🙌 Acknowledgements
+---
+
+
+
+# ðŸ™Œ Acknowledgements
 
 
 
@@ -2746,29 +2746,29 @@ Special thanks to:
 
 
 
-\- \*\*TMDB\*\* for the movie metadata and API
+- **TMDB** for the movie metadata and API
 
-\- \*\*Scikit-learn\*\* for machine-learning utilities
+- **Scikit-learn** for machine-learning utilities
 
-\- \*\*NLTK\*\* for NLP preprocessing
+- **NLTK** for NLP preprocessing
 
-\- \*\*Pandas\*\* for data processing
+- **Pandas** for data processing
 
-\- \*\*Streamlit\*\* for the application framework
+- **Streamlit** for the application framework
 
-\- \*\*Python\*\* for the overall implementation
-
-
-
-\---
+- **Python** for the overall implementation
 
 
 
-\# 🎬 Final Result
+---
 
 
 
-The project combines \*\*Machine Learning + NLP + Recommendation Systems + REST APIs + Streamlit\*\* into one end-to-end application.
+# 🎬 Final Result
+
+
+
+The project combines **Machine Learning + NLP + Recommendation Systems + REST APIs + Streamlit** into one end-to-end application.
 
 
 
@@ -2776,51 +2776,51 @@ The project combines \*\*Machine Learning + NLP + Recommendation Systems + REST 
 
 &#x20;            MOVIE DATA
 
-&#x20;                │
+&#x20;                â”‚
 
-&#x20;                ▼
+&#x20;                â–¼
 
 &#x20;         DATA PREPROCESSING
 
-&#x20;                │
+&#x20;                â”‚
 
-&#x20;                ▼
+&#x20;                â–¼
 
 &#x20;         FEATURE ENGINEERING
 
-&#x20;                │
+&#x20;                â”‚
 
-&#x20;                ▼
+&#x20;                â–¼
 
 &#x20;              NLP
 
-&#x20;                │
+&#x20;                â”‚
 
-&#x20;                ▼
+&#x20;                â–¼
 
 &#x20;        COUNTVECTORIZER
 
-&#x20;                │
+&#x20;                â”‚
 
-&#x20;                ▼
+&#x20;                â–¼
 
 &#x20;      COSINE SIMILARITY
 
-&#x20;                │
+&#x20;                â”‚
 
-&#x20;                ▼
+&#x20;                â–¼
 
 &#x20;      MOVIE RECOMMENDATIONS
 
-&#x20;                │
+&#x20;                â”‚
 
-&#x20;                ▼
+&#x20;                â–¼
 
 &#x20;           STREAMLIT
 
-&#x20;                │
+&#x20;                â”‚
 
-&#x20;                ▼
+&#x20;                â–¼
 
 &#x20;            TMDB API
 
@@ -2832,5 +2832,7 @@ The project combines \*\*Machine Learning + NLP + Recommendation Systems + REST 
 
 
 
-\*\*Built with Python, Machine Learning, NLP, Streamlit and the TMDB API. 🎬\*\*
+**Built with Python, Machine Learning, NLP, Streamlit and the TMDB API. 🎬**
+
+
 
